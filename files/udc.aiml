@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+    
+    <category>
+        <pattern>HI ^</pattern>
+        <template>
+            Hello! <split/><delay>1</delay>
+            Welcome to the Computer Science Career Assistance bot! <split/><delay>1</delay>
+            Are you ready to get started?
+            <button>
+                <text>Yes!</text>
+                <postback>STARTYES</postback>
+            </button>
+            <button>
+                <text>No.</text>
+                <postback>STARTNO</postback>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>HEY ^</pattern>
+        <template><srai>HI</srai></template>
+    </category>
+    
+    <category>
+        <pattern>Hello ^</pattern>
+        <template><srai>HI</srai></template>
+    </category>
+    
+    <category>
+        <pattern>YO ^</pattern>
+        <template><srai>HI</srai></template>
+    </category>
+    
+    <category>
+        <pattern>STARTYES</pattern>
+        <template>
+            Great! First, can you please tell me your first name?
+        </template>
+    </category>
+    
+    <category>
+        <pattern>STARTNO</pattern>
+        <template>
+            Aw, that's a shame. Type "Hi" whenever you're ready to start. Goodbye!
+        </template>
+    </category>
+    
+    <category>
+        <pattern>*</pattern>
+        <that>_ CAN YOU PLEASE TELL ME YOUR FIRST NAME</that>
+        <template>
+            It's very nice to meet you <set name="name"><star/></set>
+            <split/><delay>1</delay>
+            <srai>STARTQUESTIONS</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>STARTQUESTIONS</pattern>
+        <template>
+            Let's get started!<split/><delay>1</delay>
+            Are you currently a student or employee in the field of Computer Science?
+            <button>
+                <text>Yes</text>
+                <postback>CSYES</postback>
+            </button>
+            <button>
+                <text>No</text>
+                <postback>CSNO</postback>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CSYES</pattern>
+        <template>
+            Great! Do you prefer to work with Computers? Or with People?
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CSNO</pattern>
+        <template>
+            Well, you're in luck! You can get started at Western Governors University!
+            <button>
+                <text>Click here for more information.</text>
+                <url>https://www.wgu.edu/online-it-degrees/computer-science.html</url>
+            </button>
+        </template>
+    </category>
+    
+        <category>
+        <pattern>_ COMPUTERS</pattern>
+        <that>Or with People</that>
+        <template>
+            Which do you like more: Software, Hardware, or Networks?
+        </template>
+    </category>
+
+    <category>
+        <pattern>_ PEOPLE</pattern>
+        <that>Or with People</that>
+        <template>
+            Do you see yourself more as a Leader or a Helper?
+        </template>
+    </category>
+
+    
+    <category>
+        <pattern>_ SOFTWARE</pattern>
+        <that>_ Software, Hardware, or Networks</that>
+        <template>
+            Are you a fan of Databases?
+            <button>
+                <text>Yes</text>
+                <postback>DBYES</postback>
+            </button>
+            <button>
+                <text>No</text>
+                <postback>DBNO</postback>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>_ HARDWARE</pattern>
+        <that>_ Software, Hardware, or Networks</that>
+        <template>
+            <think><set name="career">Computer Hardware Engineer</set></think>
+            <srai>CAREERRESULT</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>_ NETWORKS</pattern>
+        <that>_ Software, Hardware, or Networks</that>
+        <template>
+            <think><set name="career">Computer Network Architect</set></think>
+            <srai>CAREERRESULT</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>_ LEADER</pattern>
+        <that>_ Leader or a Helper</that>
+        <template>
+            <think><set name="career">Computer Systems Manager</set></think>
+            <srai>CAREERRESULT</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>_ HELPER</pattern>
+        <that> _ Leader or a Helper</that>
+        <template>
+            <think><set name="career">Computer Support Specialist</set></think>
+            <srai>CAREERRESULT</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>DBYES</pattern>
+        <template>
+            <think><set name="career">Database Administrator</set></think>
+            <srai>CAREERRESULT</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>DBNO</pattern>
+        <template>
+            <think><set name="career">Software Engineer</set></think>
+            <srai>CAREERRESULT</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CAREERRESULT</pattern>
+        <template>
+            Alright, <get name="name"/>! I think I have the perfect career for you.
+            <split/><delay>1</delay>
+            Please click "Continue" when you're ready to know what it is.
+            <button>
+                <text>Continue</text>
+                <postback>CAREERCONTINUE</postback>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>CAREERCONTINUE</pattern>
+        <template>
+            You would be great as a <get name="career"/>.<split/>
+            Here is some more information on this career:
+            <condition name="career">
+                <li value="Software Engineer">
+                    <link>
+                        <text>Software Engineer</text>
+                        <url>https://www.truity.com/career-profile/software-developer</url>
+                    </link>
+                </li>
+                <li value="Database Administrator">
+                    <link>
+                        <text>Database Administrator</text>
+                        <url>https://www.truity.com/career-profile/database-administrator</url>
+                    </link>
+                </li>
+                <li value="Computer Support Specialist">
+                    <link>
+                        <text>Computer Support Specialist</text>
+                        <url>https://www.truity.com/career-profile/computer-support-specialist</url>
+                    </link>
+                </li>
+                <li value="Computer Systems Manager">
+                    <link>
+                        <text>Computer Systems Manager</text>
+                        <url>https://www.truity.com/career-profile/computer-and-manager</url>
+                    </link>
+                </li>
+                <li value="Computer Network Architect">
+                    <link>
+                        <text>Computer Network Architect</text>
+                        <url>https://www.truity.com/career-profile/computer-network-architect</url>
+                    </link>
+                </li>
+                <li value="Computer Hardware Engineer">
+                    <link>
+                        <text>Computer Hardware Engineer</text>
+                        <url>https://www.truity.com/career-profile/computer-hardware-engineer</url>
+                    </link>
+                </li>
+            </condition>
+        </template>
+    </category>
+  
+</aiml>
